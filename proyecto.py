@@ -16,3 +16,30 @@ def menu():
         print("6. ver venyas del dia ")
         print("7. ver total vendido ")
         print("8. salir ")
+
+        opcion = input("seleccione una opcion: ")
+
+        if opcion == "1":
+            agregar_producto()
+
+        elif opcion == "2":
+            consultar_inventario()
+
+        elif opcion == "3":
+            buscar_producto()
+
+        elif opcion == "4":
+            vender_producto()
+
+        elif opcion == "5":
+            stock_bajo()
+
+        elif opcion == "6":
+            ver_ventas()
+
+        elif opcion == "7":
+            total_vendido()
+
+        elif opcion == "8":
+            guardar_inventario()
+

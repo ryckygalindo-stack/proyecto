@@ -16,3 +16,5 @@ def menu():
         print("6. ver venyas del dia ")
         print("7. ver total vendido ")
         print("8. salir ")
+
+        

@@ -42,4 +42,16 @@ def menu():
 
         elif opcion == "8":
             guardar_inventario()
+            print("programa finazlizado ")
+            break
+        else:
+            print("opcion incorrecta. Selecciona del 1 al 8")
 
+#Agregar producto 
+def agregar_producto():
+    print("AGREGAR PRODUCTO")
+    nombre = input("Nombre del producto: ")
+    nombe = nombre.strip()
+    if nombre == "":
+        print("Debes escribir el nombre del producto ")
+        return

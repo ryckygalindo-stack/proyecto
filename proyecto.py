@@ -1,6 +1,7 @@
 inventario = {}
 
 ventas_del_dia = []
+ventas_dia = []
 
 #Menu pricipal 
 
@@ -70,22 +71,26 @@ def agregar_producto():
     try:
 
         # Pedimos el precio
+        #Pedimos el precio
         precio = float(input("Precio del producto: $"))
 
         # El precio debe ser mayor que 0
+        #El precio debe ser mayor que 0
         if precio <= 0:
             print("El precio debe ser mayor a 0.")
             return
 
         # Pedimos la cantidad inicial
+        #Pedimos la cantidad inicial
         cantidad = int(input("Cantidad inicial: "))
 
         # La cantidad no puede ser negativa
+        #La cantidad no puede ser negativa
         if cantidad < 0:
             print("La cantidad no puede ser negativa.")
             return
 
-        # Guardamos los datos en el diccionario
+        #Guardamos los datos en el diccionario
         inventario[nombre_busqueda] = {
             "nombre": nombre,
             "precio": precio,
@@ -94,9 +99,104 @@ def agregar_producto():
 
         print("Producto agregado correctamente.")
 
-    # Si el usuario escribe letras
+    #Si el usuario escribe letras
     
     except ValueError:
-        print("Debes ingresar números válidos.")
+        print("Debes ingresar numeros validos.")
+
+#Consultar inventario 
+
+def consultar_inventario():
+    print("Inventario")
+
+    if len(inventario) == 0:
+        print("No hay productos registrados.")
+        return
+
+    #Recorremos todos los productos
+    for clave in inventario:
+
+        #Obtenemos los datos del producto
+        producto = inventario[clave]
+
+       
+        print("Producto:", producto["nombre"])
+        print("Precio: $", producto["precio"])
+        print("Cantidad:", producto["cantidad"])
+
+#Vender producto 
+def vender_producto():
+
+    print("\n--- VENDER PRODUCTO ---")
+
+    #Pedimos el producto que se desea vender
+    nombre = input("Nombre del producto: ")
+
+    #Quitamos espacios
+    nombre = nombre.strip()
+
+    #Convertimos a minusculas para buscar
+    nombre_busqueda = nombre.lower()
+
+    #Esta variable guardara la clave encontrada
+    clave_encontrada = ""
+
+    #Buscamos el producto en el inventario
+    for clave in inventario:
+
+        if clave == nombre_busqueda:
+            clave_encontrada = clave
+
+    #Si quedo vacia significa que no existe
+    if clave_encontrada == "":
+        print("El producto no existe.")
+        return
+
+    try:
+
+        #Pedimos la cantidad que desea comprar
+        cantidad = int(input("Cantidad a vender: "))
+
+        #La cantidad debe ser mayor a cero
+        if cantidad <= 0:
+            print("La cantidad debe ser mayor a 0.")
+            return
+
+        #Obtenemos los datos del producto
+        producto = inventario[clave_encontrada]
+
+        #Revisamos si existe suficiente mercancia
+        if cantidad > producto["cantidad"]:
+
+            print("No hay suficiente producto disponible.")
+            print("Existencia actual:", producto["cantidad"])
+
+            return
+
+        #Calculamos el total de la venta
+        total = producto["precio"] * cantidad
+
+        #Restamos las unidades vendidas
+        producto["cantidad"] = producto["cantidad"] - cantidad
+
+        #Creamos un diccionario para guardar la venta
+        venta = {
+            "producto": producto["nombre"],
+            "cantidad": cantidad,
+            "total": total
+        }
+
+        #Agregamos la venta a la lista
+        ventas_dia.append(venta)
+
+        print("\nVenta realizada correctamente.")
+        print("Producto:", producto["nombre"])
+        print("Cantidad:", cantidad)
+        print("Total: $", total)
+
+    #Evitamos que el programa se rompa
+    
+    except ValueError:
+        print("Debes ingresar una cantidad valida.")
 
 

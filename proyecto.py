@@ -55,3 +55,48 @@ def agregar_producto():
     if nombre == "":
         print("Debes escribir el nombre del producto ")
         return
+
+    nombre_busqueda = nombre.lower
+    existe = False
+
+    for clave in inventario:
+        if clave == nombre_busqueda: 
+            existe = True  
+
+    if existe == True:
+        print("Ese producto ya existe en el inventario ")
+        return
+
+    try:
+
+        # Pedimos el precio
+        precio = float(input("Precio del producto: $"))
+
+        # El precio debe ser mayor que 0
+        if precio <= 0:
+            print("El precio debe ser mayor a 0.")
+            return
+
+        # Pedimos la cantidad inicial
+        cantidad = int(input("Cantidad inicial: "))
+
+        # La cantidad no puede ser negativa
+        if cantidad < 0:
+            print("La cantidad no puede ser negativa.")
+            return
+
+        # Guardamos los datos en el diccionario
+        inventario[nombre_busqueda] = {
+            "nombre": nombre,
+            "precio": precio,
+            "cantidad": cantidad
+        }
+
+        print("Producto agregado correctamente.")
+
+    # Si el usuario escribe letras
+    
+    except ValueError:
+        print("Debes ingresar números válidos.")
+
+

@@ -13,7 +13,7 @@ def menu():
         print("3. buscar producto ")
         print("4. vender producto ")
         print("5. reporte de stock bajo ")
-        print("6. ver ventas del dia ")
+        print("6. ver venyas del dia ")
         print("7. ver total vendido ")
         print("8. salir ")
 
@@ -41,7 +41,7 @@ def menu():
             total_vendido()
 
         elif opcion == "8":
-            cargar_inventario()
+            guardar_inventario()
             print("programa finazlizado ")
             break
         else:
@@ -286,8 +286,8 @@ def total_vendido():
 
 #Guardar inventario 
 
-def cargar_inventario():
-    # Abrimos el archivo en modo escritura
+def guardar_inventario():
+    #Abrimos el archivo en modo escritura
     archivo = open("inventario.txt", "w")
 
     #Recorremos los productos
@@ -313,51 +313,12 @@ def cargar_inventario():
     print("Inventario guardado correctamente.")
 
 
-try:
 
-        #Intentamos abrir el archivo
-        archivo = open("inventario.txt", "r")
 
-        #Recorremos cada linea del archivo
-        for linea in archivo:
 
-            #Quitamos el salto de linea
-            linea = linea.strip()
 
-            #Separamos los datos usando |
-            datos = linea.split("|")
 
-            #Guardamos cada dato en una variable
-            nombre = datos[0]
-            precio = float(datos[1])
-            cantidad = int(datos[2])
 
-            #Creamos la clave en minusculas
-            clave = nombre.lower()
+    
 
-            #Guardamos nuevamente el producto
-            #dentro del diccionario
-            inventario[clave] = {
-                "nombre": nombre,
-                "precio": precio,
-                "cantidad": cantidad
-            }
-
-        #Cerramos el archivo
-        archivo.close()
-
-        print("Inventario cargado correctamente.")
-
-    #Si el archivo todavia no existe,
-    #el programa puede continuar normalmente
-except FileNotFoundError:
-
-        print("No existe un inventario anterior.")
-        print("Se iniciara un inventario nuevo.")
-
-#Inicio del programa 
-
-cargar_inventario()
-
-menu()
 

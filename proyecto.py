@@ -265,3 +265,44 @@ def ver_ventas():
         print("Producto:", venta["producto"])
         print("Cantidad:", venta["cantidad"])
         print("Total: $", venta["total"])
+
+def total_vendido():
+    print("TOTAL VENDIDO ")
+     #Empezamos el total en cero
+    total = 0
+
+    #Recorremos las ventas
+    for venta in ventas_dia:
+
+        #Sumamos cada venta al total
+        total = total + venta["total"]
+
+    print("Total vendido: $", total)
+
+#Guardar inventario 
+
+def guardar_inventario():
+    # Abrimos el archivo en modo escritura
+    archivo = open("inventario.txt", "w")
+
+    #Recorremos los productos
+    for clave in inventario:
+
+        producto = inventario[clave]
+
+        #Convertimos precio y cantidad a texto
+        precio_texto = str(producto["precio"])
+        cantidad_texto = str(producto["cantidad"])
+
+        #Creamos la linea que se guardara
+        linea = producto["nombre"] + "|"
+        linea = linea + precio_texto + "|"
+        linea = linea + cantidad_texto + "\n"
+
+        #Escribimos la linea en el archivo
+        archivo.write(linea)
+
+    #Cerramos el archivo
+    archivo.close()
+
+    print("Inventario guardado correctamente.")

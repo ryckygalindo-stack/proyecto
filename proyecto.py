@@ -194,4 +194,74 @@ def vender_producto():
     except ValueError:
         print("Debes ingresar una cantidad valida.")
 
+#Buscar producto 
 
+def buscar_producto():
+    print("BUSCAR PRODUCTO")
+    nombre = input("Nombre del producto: ")
+    nombre = nombre.strip()
+    nombre_busqueda = nombre.lower()
+    #Variable para saber si encontramos el producto
+    encontrado = False
+
+    #Recorremos el inventario
+    for clave in inventario:
+
+        #Comparamos las claves
+        if clave == nombre_busqueda:
+
+            producto = inventario[clave]
+
+            print("\nProducto encontrado:")
+            print("Nombre:", producto["nombre"])
+            print("Precio: $", producto["precio"])
+            print("Cantidad disponible:", producto["cantidad"])
+
+            encontrado = True
+
+    #Si despues de recorrer el inventario
+    #sigue siendo falso, no existe
+    if encontrado == False:
+        print("El producto no existe.")
+
+#Reporte de stock bajo 
+
+def stock_bajo():
+    print("PRODUCTOS CON STOCK BAJO ")
+    #Variable que indica si encontramos un producto cin bajon stock
+    encontrado = False
+
+    #Recorremos el inventario
+    for clave in inventario:
+
+        producto = inventario[clave]
+
+        #Si tiene 5 unidades o menos = stcok bajo 
+        
+        if producto["cantidad"] <= 5:
+
+            print("Producto:", producto["nombre"])
+            print("Cantidad:", producto["cantidad"])
+
+            encontrado = True
+
+    #Si no encontramos ninguno
+    if encontrado == False:
+        print("No hay productos con stock bajo.")
+
+#Ver ventas del dia 
+
+def ver_ventas():
+    print("VENTAS DEL DIA ")
+    #Revisamos si la lista esta vacia
+    if len(ventas_dia) == 0:
+        print("Todavia no se han realizado ventas.")
+        return
+
+    #Recorremos todas las ventas
+    for venta in ventas_dia:
+
+        
+        print("Producto:", venta["producto"])
+        print("Cantidad:", venta["cantidad"])
+        print("Total: $", venta["total"])

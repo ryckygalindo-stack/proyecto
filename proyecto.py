@@ -92,7 +92,10 @@ def agregar_producto():
             "cantidad": cantidad
         }
 
-        print("Producto agregado correctamente.")
+        print("\nProducto agregado correctamente.")
+        print("Nombre:", nombre)
+        print("Precio: $", precio)
+        print("Cantidad:", cantidad)
 
     #Si el usuario escribe letras
     
@@ -178,6 +181,7 @@ def vender_producto():
         venta = {
             "producto": producto["nombre"],
             "cantidad": cantidad,
+            "precio": producto["precio"],
             "total": total
         }
 
@@ -187,6 +191,7 @@ def vender_producto():
         print("\nVenta realizada correctamente.")
         print("Producto:", producto["nombre"])
         print("Cantidad:", cantidad)
+        print("Precio unitario: $", producto["precio"])
         print("Total: $", total)
 
     #Evitamos que el programa se rompa
@@ -306,3 +311,14 @@ def guardar_inventario():
     archivo.close()
 
     print("Inventario guardado correctamente.")
+
+
+
+
+
+
+
+
+    
+
+

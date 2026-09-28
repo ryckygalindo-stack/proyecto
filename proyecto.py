@@ -313,12 +313,51 @@ def guardar_inventario():
     print("Inventario guardado correctamente.")
 
 
+try:
 
+        #Intentamos abrir el archivo
+        archivo = open("inventario.txt", "r")
 
+        #Recorremos cada linea del archivo
+        for linea in archivo:
 
+            #Quitamos el salto de linea
+            linea = linea.strip()
 
+            #Separamos los datos usando |
+            datos = linea.split("|")
 
+            #Guardamos cada dato en una variable
+            nombre = datos[0]
+            precio = float(datos[1])
+            cantidad = int(datos[2])
 
-    
+            #Creamos la clave en minusculas
+            clave = nombre.lower()
 
+            #Guardamos nuevamente el producto
+            #dentro del diccionario
+            inventario[clave] = {
+                "nombre": nombre,
+                "precio": precio,
+                "cantidad": cantidad
+            }
+
+        #Cerramos el archivo
+        archivo.close()
+
+        print("Inventario cargado correctamente.")
+
+    #Si el archivo todavia no existe,
+    #el programa puede continuar normalmente
+except FileNotFoundError:
+
+        print("No existe un inventario anterior.")
+        print("Se iniciara un inventario nuevo.")
+
+#Inicio del programa 
+
+cargar_inventario()
+
+menu()
 

@@ -1,6 +1,5 @@
 inventario = {}
 
-ventas_del_dia = []
 ventas_dia = []
 
 #Menu pricipal 
@@ -70,21 +69,17 @@ def agregar_producto():
 
     try:
 
-        # Pedimos el precio
         #Pedimos el precio
         precio = float(input("Precio del producto: $"))
 
-        # El precio debe ser mayor que 0
         #El precio debe ser mayor que 0
         if precio <= 0:
             print("El precio debe ser mayor a 0.")
             return
 
-        # Pedimos la cantidad inicial
         #Pedimos la cantidad inicial
         cantidad = int(input("Cantidad inicial: "))
 
-        # La cantidad no puede ser negativa
         #La cantidad no puede ser negativa
         if cantidad < 0:
             print("La cantidad no puede ser negativa.")
